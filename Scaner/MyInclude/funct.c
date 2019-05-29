@@ -1,5 +1,5 @@
 #include "funct.h"
-#include "NewFont.h"
+
 
 
 volatile uint64_t msTime = 0;
@@ -28,13 +28,22 @@ int fputc(int ch, FILE *f) {
 void portInit(void){
     RCC->APB2ENR |= RCC_APB2ENR_IOPAEN | RCC_APB2ENR_IOPBEN | RCC_APB2ENR_AFIOEN | RCC_APB2ENR_IOPCEN;     //включение тактирования портов 
         
-    GPIOA->CRL &= ~GPIO_CRL_CNF1_0;        //Порт A1 на выход
-    GPIOA->CRL |= GPIO_CRL_MODE1;    
+    GPIOA->CRH &= ~GPIO_CRH_CNF8_0;        //Порт A8 на выход
+    GPIOA->CRH |= GPIO_CRH_MODE8;
+
+    GPIOA->CRL &= ~((GPIO_CRL_CNF7_0)|(GPIO_CRL_CNF6_0)|(GPIO_CRL_CNF5_0)|(GPIO_CRL_CNF4_0)|(GPIO_CRL_CNF3_0)|(GPIO_CRL_CNF2_0)|(GPIO_CRL_CNF1_0)|(GPIO_CRL_CNF0_0));
+    GPIOA->CRL |= (GPIO_CRL_MODE7)|(GPIO_CRL_MODE6)|(GPIO_CRL_MODE5)|(GPIO_CRL_MODE4)|(GPIO_CRL_MODE3)|(GPIO_CRL_MODE2)|(GPIO_CRL_MODE1)|(GPIO_CRL_MODE0);
+
+    GPIOB->CRL &= ~((GPIO_CRL_CNF0_0)|(GPIO_CRL_CNF1_0)|(GPIO_CRL_CNF5_0)|(GPIO_CRL_CNF6_0)|(GPIO_CRL_CNF7_0));
+    GPIOB->CRL |= (GPIO_CRL_MODE0)|(GPIO_CRL_MODE1)|(GPIO_CRL_MODE5)|(GPIO_CRL_MODE6)|(GPIO_CRL_MODE7);
+
+
+    
 
     GPIOC->CRH &= ~GPIO_CRH_CNF13_0;      //Порт C13 на выход  
     GPIOC->CRH |= GPIO_CRH_MODE13;
 
-    GPIOA->CRL |= GPIO_CRL_CNF0_0;        //Порт A0 на выход
+    GPIOA->CRL |= GPIO_CRL_CNF0_0;        //Порт A0 на вход
 }                                    
 
 void timerInit(){
@@ -64,6 +73,22 @@ uint64_t micros(){
     millisec = msTime;
     __enable_irq ();
     return millisec; 
+}
+
+void uartInit(void){
+     
+     RCC->APB2ENR |= RCC_APB2ENR_USART1EN;
+     USART1->BRR = 0x9c4;                            //BaudRate 9600    USART_BRR = (fck + baudrate /2 ) / baudrate
+     USART1->CR1 |= USART_CR1_UE;
+     USART1->CR1 |= USART_CR1_TE;                   //Включаем передатчик
+}
+
+void send_to_uart(uint8_t data) {
+
+     while(!(USART1->SR & USART_SR_TC));  //Ждем пока бит TC в регистре SR станет 1
+
+     USART1->DR = data;                     //Отсылаем байт через UART
+
 }
 
 
