@@ -1,6 +1,5 @@
 #include "stm32f10x.h"                  // Device header
 #include "funct.h"
-
 //29_05
 
 
