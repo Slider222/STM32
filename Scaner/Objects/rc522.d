@@ -1,0 +1,15 @@
+.\objects\rc522.o: MyInclude\rc522.c
+.\objects\rc522.o: C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include\stm32f10x.h
+.\objects\rc522.o: .\RTE\_Scaner\RTE_Components.h
+.\objects\rc522.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.1\CMSIS\Include\core_cm3.h
+.\objects\rc522.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\rc522.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.1\CMSIS\Include\cmsis_version.h
+.\objects\rc522.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.1\CMSIS\Include\cmsis_compiler.h
+.\objects\rc522.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.1\CMSIS\Include\cmsis_armcc.h
+.\objects\rc522.o: C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include\system_stm32f10x.h
+.\objects\rc522.o: MyInclude\gpio.h
+.\objects\rc522.o: MyInclude\rc522.h
+.\objects\rc522.o: MyInclude\spi.h
+.\objects\rc522.o: MyInclude\funct.h
+.\objects\rc522.o: MyInclude\delay.h
+.\objects\rc522.o: MyInclude\delay.h
