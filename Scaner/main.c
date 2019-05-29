@@ -6,8 +6,12 @@
 extern volatile uint64_t msTime;  
 
 int main(void){	
-    
-	
+    portInit(); 
+	init_TFT();
+
+    while(1){
+    ;
+    }
 }
 
 

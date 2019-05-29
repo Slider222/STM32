@@ -12,3 +12,5 @@
 .\objects\anmotors.o: MyInclude\delay.h
 .\objects\anmotors.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\anmotors.o: MyInclude\AnMotors.h
+.\objects\anmotors.o: MyInclude\displ.h
+.\objects\anmotors.o: MyInclude\Funct.h

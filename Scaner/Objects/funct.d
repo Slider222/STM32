@@ -12,4 +12,4 @@
 .\objects\funct.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\funct.o: MyInclude\AnMotors.h
 .\objects\funct.o: MyInclude\Funct.h
-.\objects\funct.o: MyInclude\NewFont.h
+.\objects\funct.o: MyInclude\displ.h
