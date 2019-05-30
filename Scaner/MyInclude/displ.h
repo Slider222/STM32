@@ -25,7 +25,7 @@
 #define reset_PC12 (GPIOC->BSRR |= GPIO_BSRR_BR12)
 
 
-#define dataPort (GPIOA->ODR)
+#define dataPort (GPIOB->ODR)
 
 #define setSPT    {lcdWriteCommand(0x07);write_data(0x0153);}    //0053  spt = 1 2screen
 #define resetSPT  {lcdWriteCommand(0x07); write_data(0x0053);}  //0053  spt = 0 1screen
