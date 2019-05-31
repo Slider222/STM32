@@ -1,14 +1,14 @@
 #include "stm32f10x.h"                  // Device header
 #include "funct.h"
 
+#define CS GPIO_Pin_1
 
 
 extern volatile uint64_t msTime;  
 
 int main(void){	
     portInit(); 
-		init_TFT();
-
+		init_TFT();		
     while(1){
     ;
     }

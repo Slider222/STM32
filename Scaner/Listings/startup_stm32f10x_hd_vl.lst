@@ -540,10 +540,11 @@ ARM Macro Assembler    Page 9
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\objects\startup_stm32f10x_hd_vl.d -o.\objects\startup_stm32f10x_
 hd_vl.o -I.\RTE\Device\STM32F100RC -I.\RTE\_Scaner -IC:\Keil_v5\ARM\PACK\ARM\CM
-SIS\5.1.1\CMSIS\Include -IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\I
-nclude --predefine="__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 524" --p
-redefine="_RTE_ SETA 1" --predefine="STM32F10X_HD_VL SETA 1" --list=.\listings\
-startup_stm32f10x_hd_vl.lst RTE\Device\STM32F100RC\startup_stm32f10x_hd_vl.s
+SIS\5.5.1\CMSIS\Core\Include -IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Dev
+ice\Include -IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Dri
+ver\inc --predefine="__UVISION_VERSION SETA 524" --predefine="_RTE_ SETA 1" --p
+redefine="STM32F10X_HD_VL SETA 1" --list=.\listings\startup_stm32f10x_hd_vl.lst
+ RTE\Device\STM32F100RC\startup_stm32f10x_hd_vl.s
 
 
 
@@ -1371,4 +1372,4 @@ Symbol: __use_two_region_memory
       None
 Comment: __use_two_region_memory unused
 3 symbols
-420 symbols in table
+419 symbols in table
