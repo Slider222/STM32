@@ -5,8 +5,6 @@ Component: ARM Compiler 5.06 update 5 (build 528) Tool: armlink [4d35e2]
 Section Cross References
 
     main.o(i.TIM2_IRQHandler) refers to funct.o(.data) for msTime
-    main.o(i.main) refers to funct.o(i.portInit) for portInit
-    main.o(i.main) refers to displ.o(i.init_TFT) for init_TFT
     funct.o(i.micros) refers to funct.o(.data) for msTime
     funct.o(i.millis) refers to funct.o(.data) for msTime
     delay.o(i.Delay_mks) refers to delay.o(i.IWDG_Feed) for IWDG_Feed
@@ -176,6 +174,7 @@ Removing Unused input sections from the image.
     Removing funct.o(i.fputc), (36 bytes).
     Removing funct.o(i.micros), (24 bytes).
     Removing funct.o(i.millis), (24 bytes).
+    Removing funct.o(i.portInit), (144 bytes).
     Removing funct.o(i.send_to_uart), (28 bytes).
     Removing funct.o(i.timerInit), (64 bytes).
     Removing funct.o(i.uartInit), (52 bytes).
@@ -200,11 +199,15 @@ Removing Unused input sections from the image.
     Removing displ.o(.rrx_text), (6 bytes).
     Removing displ.o(i.Display_Home), (74 bytes).
     Removing displ.o(i.display_rgb), (34 bytes).
+    Removing displ.o(i.init_TFT), (620 bytes).
     Removing displ.o(i.lcdSetPos), (72 bytes).
+    Removing displ.o(i.lcdWriteCommand), (120 bytes).
     Removing displ.o(i.set_cursor), (38 bytes).
     Removing displ.o(i.write_String), (66 bytes).
+    Removing displ.o(i.write_data), (128 bytes).
     Removing displ.o(i.write_symbol), (152 bytes).
     Removing displ.o(.constdata), (2048 bytes).
+<<<<<<< HEAD
     Removing misc.o(.rev16_text), (4 bytes).
     Removing misc.o(.revsh_text), (4 bytes).
     Removing misc.o(.rrx_text), (6 bytes).
@@ -271,13 +274,20 @@ Removing Unused input sections from the image.
     Removing stm32f10x_rcc.o(i.RCC_USBCLKConfig), (12 bytes).
     Removing stm32f10x_rcc.o(i.RCC_WaitForHSEStartUp), (56 bytes).
     Removing stm32f10x_rcc.o(.data), (20 bytes).
+=======
+    Removing displ.o(.data), (16 bytes).
+>>>>>>> a795ee346a81b17659b96aecfb4912bb7b397f3c
     Removing system_stm32f10x.o(.rev16_text), (4 bytes).
     Removing system_stm32f10x.o(.revsh_text), (4 bytes).
     Removing system_stm32f10x.o(.rrx_text), (6 bytes).
     Removing system_stm32f10x.o(i.SystemCoreClockUpdate), (160 bytes).
     Removing system_stm32f10x.o(.data), (20 bytes).
 
+<<<<<<< HEAD
 109 unused section(s) (total 6090 bytes) removed from the image.
+=======
+48 unused section(s) (total 4846 bytes) removed from the image.
+>>>>>>> a795ee346a81b17659b96aecfb4912bb7b397f3c
 
 ==============================================================================
 
@@ -287,20 +297,25 @@ Image Symbol Table
 
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
+<<<<<<< HEAD
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit3.o ABSOLUTE
+=======
+>>>>>>> a795ee346a81b17659b96aecfb4912bb7b397f3c
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit1.o ABSOLUTE
+    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit2.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardshut.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit2.o ABSOLUTE
     ../clib/angel/handlers.s                 0x00000000   Number         0  __scatter_zi.o ABSOLUTE
     ../clib/angel/handlers.s                 0x00000000   Number         0  __scatter_copy.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit2.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry2.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry4.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry2.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit.o ABSOLUTE
     ../clib/angel/rt.s                       0x00000000   Number         0  rt_raise.o ABSOLUTE
     ../clib/angel/scatter.s                  0x00000000   Number         0  __scatter.o ABSOLUTE
     ../clib/angel/startup.s                  0x00000000   Number         0  __main.o ABSOLUTE
+<<<<<<< HEAD
     ../clib/angel/sys.s                      0x00000000   Number         0  libspace.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  use_no_semi.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  indicate_semi.o ABSOLUTE
@@ -309,8 +324,18 @@ Image Symbol Table
     ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_command.o ABSOLUTE
     ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_wrch.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
+=======
+    ../clib/angel/sys.s                      0x00000000   Number         0  use_no_semi.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  indicate_semi.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  libspace.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  sys_stackheap_outer.o ABSOLUTE
+    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_command.o ABSOLUTE
+    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_wrch.o ABSOLUTE
+    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_exit.o ABSOLUTE
+>>>>>>> a795ee346a81b17659b96aecfb4912bb7b397f3c
     ../clib/armsys.c                         0x00000000   Number         0  no_argv.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
+<<<<<<< HEAD
     ../clib/armsys.c                         0x00000000   Number         0  _get_argv_nomalloc.o ABSOLUTE
     ../clib/heapalloc.c                      0x00000000   Number         0  hrguard.o ABSOLUTE
     ../clib/heapaux.c                        0x00000000   Number         0  heapauxi.o ABSOLUTE
@@ -329,14 +354,40 @@ Image Symbol Table
     ../clib/signal.c                         0x00000000   Number         0  defsig_general.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_abrt_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
+=======
+    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
+    ../clib/heapalloc.c                      0x00000000   Number         0  hrguard.o ABSOLUTE
+    ../clib/heapaux.c                        0x00000000   Number         0  heapauxi.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libshutdown.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libinit.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libinit2.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libshutdown2.o ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  __2printf.o ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  noretval__2printf.o ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  _printf_char_file.o ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  __printf_nopercent.o ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  _printf_char_common.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_abrt_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  __raise.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_formal.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_general.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_exit.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
+>>>>>>> a795ee346a81b17659b96aecfb4912bb7b397f3c
     ../clib/signal.c                         0x00000000   Number         0  defsig_stak_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_segv_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_other.o ABSOLUTE
+<<<<<<< HEAD
     ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_exit.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
+=======
+    ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
+>>>>>>> a795ee346a81b17659b96aecfb4912bb7b397f3c
     ../clib/signal.s                         0x00000000   Number         0  defsig.o ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  ferror_locked.o ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  ferror.o ABSOLUTE
@@ -423,22 +474,23 @@ Image Symbol Table
     i.SysTick_Handler                        0x0800034c   Section        0  delay.o(i.SysTick_Handler)
     i.SystemInit                             0x08000364   Section        0  system_stm32f10x.o(i.SystemInit)
     i.TIM2_IRQHandler                        0x080003c8   Section        0  main.o(i.TIM2_IRQHandler)
+<<<<<<< HEAD
     i.init_TFT                               0x080003fc   Section        0  displ.o(i.init_TFT)
     i.lcdWriteCommand                        0x08000668   Section        0  displ.o(i.lcdWriteCommand)
     i.main                                   0x080006d0   Section        0  main.o(i.main)
     i.portInit                               0x080006dc   Section        0  funct.o(i.portInit)
     i.write_data                             0x0800076c   Section        0  displ.o(i.write_data)
+=======
+    i.main                                   0x080003fc   Section        0  main.o(i.main)
+>>>>>>> a795ee346a81b17659b96aecfb4912bb7b397f3c
     .data                                    0x20000000   Section       16  funct.o(.data)
     .data                                    0x20000010   Section        4  delay.o(.data)
-    .data                                    0x20000014   Section       16  displ.o(.data)
-    data                                     0x20000014   Data           8  displ.o(.data)
-    array                                    0x2000001c   Data           8  displ.o(.data)
-    .bss                                     0x20000024   Section       96  libspace.o(.bss)
-    HEAP                                     0x20000088   Section      512  startup_stm32f10x_hd_vl.o(HEAP)
-    Heap_Mem                                 0x20000088   Data         512  startup_stm32f10x_hd_vl.o(HEAP)
-    STACK                                    0x20000288   Section     1024  startup_stm32f10x_hd_vl.o(STACK)
-    Stack_Mem                                0x20000288   Data        1024  startup_stm32f10x_hd_vl.o(STACK)
-    __initial_sp                             0x20000688   Data           0  startup_stm32f10x_hd_vl.o(STACK)
+    .bss                                     0x20000014   Section       96  libspace.o(.bss)
+    HEAP                                     0x20000078   Section      512  startup_stm32f10x_hd_vl.o(HEAP)
+    Heap_Mem                                 0x20000078   Data         512  startup_stm32f10x_hd_vl.o(HEAP)
+    STACK                                    0x20000278   Section     1024  startup_stm32f10x_hd_vl.o(STACK)
+    Stack_Mem                                0x20000278   Data        1024  startup_stm32f10x_hd_vl.o(STACK)
+    __initial_sp                             0x20000678   Data           0  startup_stm32f10x_hd_vl.o(STACK)
 
     Global Symbols
 
@@ -604,6 +656,7 @@ Image Symbol Table
     SysTick_Handler                          0x0800034d   Thumb Code    18  delay.o(i.SysTick_Handler)
     SystemInit                               0x08000365   Thumb Code    82  system_stm32f10x.o(i.SystemInit)
     TIM2_IRQHandler                          0x080003c9   Thumb Code    48  main.o(i.TIM2_IRQHandler)
+<<<<<<< HEAD
     init_TFT                                 0x080003fd   Thumb Code   616  displ.o(i.init_TFT)
     lcdWriteCommand                          0x08000669   Thumb Code    92  displ.o(i.lcdWriteCommand)
     main                                     0x080006d1   Thumb Code    12  main.o(i.main)
@@ -611,12 +664,17 @@ Image Symbol Table
     write_data                               0x0800076d   Thumb Code    96  displ.o(i.write_data)
     Region$$Table$$Base                      0x080007d8   Number         0  anon$$obj.o(Region$$Table)
     Region$$Table$$Limit                     0x080007f8   Number         0  anon$$obj.o(Region$$Table)
+=======
+    main                                     0x080003fd   Thumb Code    32  main.o(i.main)
+    Region$$Table$$Base                      0x0800041c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0800043c   Number         0  anon$$obj.o(Region$$Table)
+>>>>>>> a795ee346a81b17659b96aecfb4912bb7b397f3c
     msTime                                   0x20000000   Data           8  funct.o(.data)
     __stdout                                 0x20000008   Data           4  funct.o(.data)
     __stdin                                  0x2000000c   Data           4  funct.o(.data)
     TimingDelay                              0x20000010   Data           4  delay.o(.data)
-    __libspace_start                         0x20000024   Data          96  libspace.o(.bss)
-    __temporary_stack_top$libspace           0x20000084   Data           0  libspace.o(.bss)
+    __libspace_start                         0x20000014   Data          96  libspace.o(.bss)
+    __temporary_stack_top$libspace           0x20000074   Data           0  libspace.o(.bss)
 
 
 
@@ -626,9 +684,15 @@ Memory Map of the image
 
   Image Entry point : 0x080001d1
 
+<<<<<<< HEAD
   Load Region LR_1 (Base: 0x08000000, Size: 0x0000081c, Max: 0xffffffff, ABSOLUTE)
 
     Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000007f8, Max: 0xffffffff, ABSOLUTE)
+=======
+  Load Region LR_1 (Base: 0x08000000, Size: 0x00000450, Max: 0xffffffff, ABSOLUTE)
+
+    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x0000043c, Max: 0xffffffff, ABSOLUTE)
+>>>>>>> a795ee346a81b17659b96aecfb4912bb7b397f3c
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -695,6 +759,7 @@ Memory Map of the image
     0x0800034c   0x0800034c   0x00000018   Code   RO          168    i.SysTick_Handler   delay.o
     0x08000364   0x08000364   0x00000064   Code   RO          753    i.SystemInit        system_stm32f10x.o
     0x080003c8   0x080003c8   0x00000034   Code   RO            4    i.TIM2_IRQHandler   main.o
+<<<<<<< HEAD
     0x080003fc   0x080003fc   0x0000026c   Code   RO          276    i.init_TFT          displ.o
     0x08000668   0x08000668   0x00000068   Code   RO          278    i.lcdWriteCommand   displ.o
     0x080006d0   0x080006d0   0x0000000c   Code   RO            5    i.main              main.o
@@ -720,6 +785,28 @@ Memory Map of the image
     0x20000084   0x0800081c   0x00000004   PAD
     0x20000088        -       0x00000200   Zero   RW          741    HEAP                startup_stm32f10x_hd_vl.o
     0x20000288        -       0x00000400   Zero   RW          740    STACK               startup_stm32f10x_hd_vl.o
+=======
+    0x080003fc   0x080003fc   0x00000020   Code   RO            5    i.main              main.o
+    0x0800041c   0x0800041c   0x00000020   Data   RO          562    Region$$Table       anon$$obj.o
+
+
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x0800043c, Size: 0x00000014, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x20000000   0x0800043c   0x00000010   Data   RW           84    .data               funct.o
+    0x20000010   0x0800044c   0x00000004   Data   RW          159    .data               delay.o
+
+
+    Execution Region ER_ZI (Exec base: 0x20000014, Load base: 0x08000450, Size: 0x00000664, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x20000014        -       0x00000060   Zero   RW          436    .bss                c_w.l(libspace.o)
+    0x20000074   0x08000450   0x00000004   PAD
+    0x20000078        -       0x00000200   Zero   RW          337    HEAP                startup_stm32f10x_hd_vl.o
+    0x20000278        -       0x00000400   Zero   RW          336    STACK               startup_stm32f10x_hd_vl.o
+>>>>>>> a795ee346a81b17659b96aecfb4912bb7b397f3c
 
 
 ==============================================================================
@@ -730,14 +817,23 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
         24          6          0          4          0        576   delay.o
+<<<<<<< HEAD
        832         28          0         16          0       1846   displ.o
        144         24          0         16          0       2340   funct.o
         64          4          0          0          0       5281   main.o
+=======
+         0          0          0         16          0       1937   funct.o
+        84          4          0          0          0       5686   main.o
+>>>>>>> a795ee346a81b17659b96aecfb4912bb7b397f3c
         64         26        308          0       1536        796   startup_stm32f10x_hd_vl.o
        292         24          0          0          0       1865   system_stm32f10x.o
 
     ----------------------------------------------------------------------
+<<<<<<< HEAD
       1422        112        340         36       1536      12704   Object Totals
+=======
+       466         60        340         20       1536      10860   Object Totals
+>>>>>>> a795ee346a81b17659b96aecfb4912bb7b397f3c
          0          0         32          0          0          0   (incl. Generated)
          2          0          0          0          0          0   (incl. Padding)
 
@@ -786,6 +882,7 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
+<<<<<<< HEAD
       1700        128        340         36       1636      12712   Grand Totals
       1700        128        340         36       1636      12712   ELF Image Totals
       1700        128        340         36          0          0   ROM Totals
@@ -795,6 +892,17 @@ Image component sizes
     Total RO  Size (Code + RO Data)                 2040 (   1.99kB)
     Total RW  Size (RW Data + ZI Data)              1672 (   1.63kB)
     Total ROM Size (Code + RO Data + RW Data)       2076 (   2.03kB)
+=======
+       744         76        340         20       1636      11076   Grand Totals
+       744         76        340         20       1636      11076   ELF Image Totals
+       744         76        340         20          0          0   ROM Totals
+
+==============================================================================
+
+    Total RO  Size (Code + RO Data)                 1084 (   1.06kB)
+    Total RW  Size (RW Data + ZI Data)              1656 (   1.62kB)
+    Total ROM Size (Code + RO Data + RW Data)       1104 (   1.08kB)
+>>>>>>> a795ee346a81b17659b96aecfb4912bb7b397f3c
 
 ==============================================================================
 

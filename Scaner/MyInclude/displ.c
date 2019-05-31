@@ -4,10 +4,10 @@
 
 void lcdWriteCommand(uint8_t command){
       static uint16_t data[4];     
-      data[0] = (0x0000 & 0x00ff);                //обнуляем порт и сброс     
-      data[1] = (command & 0x00ff) | 0x0100;      //данные на порт и запись 
-      data[2] = (command & 0x00ff);               //данные на порт и сброс
-      data[3] = (command & 0x00ff) | 0x0100;      //данные на порт и запись
+      data[0] = (0x0000 & 0x7f80);                               //обнуляем порт и сброс     
+      data[1] = ((command << 7) & 0x7f80) | 0x8000;              //данные на порт и запись 
+      data[2] = ((command << 7) & 0x7f80);                      //данные на порт и сброс
+      data[3] = ((command << 7) & 0x7f80) | 0x8000;             //данные на порт и запись
       reset_RS;
       reset_CS;
       for (int i = 0; i < 4; i++){
@@ -20,10 +20,10 @@ void lcdWriteCommand(uint8_t command){
 
 void write_data (unsigned int data){
       static uint16_t array[4];     
-      array[0] = ((data >> 8) & 0x00ff);                //сброс записи
-      array[1] = ((data >> 8) & 0x00ff) | 0x0100;       //установка записи    
-      array[2] = (data & 0x00ff);                       //сброс записи 
-      array[3] = (data & 0x00ff) | 0x0100;              //установка записи      
+      array[0] = ((data >> 1) & 0x7f80);                //сброс записи
+      array[1] = ((data >> 5) & 0x7f80) | 0x8000;       //установка записи    
+      array[2] = ((data << 3)& 0x7f80);                       //сброс записи 
+      array[3] = ((data << 3)& 0x7f80) | 0x8000;              //установка записи      
       set_RS;                                           //тип данные
       reset_CS;                                         //выбор чипа
       for (int i = 0; i < 4; i++){

@@ -7,8 +7,17 @@
 extern volatile uint64_t msTime;  
 
 int main(void){	
+<<<<<<< HEAD
     portInit(); 
 		init_TFT();		
+=======
+    //portInit(); 
+	//init_TFT();
+    volatile uint8_t data1 = 0xF3;
+    volatile uint16_t port1 = 0;
+    port1 = ((data1 << 7) & 0x7f80)| 0x8000;
+
+>>>>>>> a795ee346a81b17659b96aecfb4912bb7b397f3c
     while(1){
     ;
     }
