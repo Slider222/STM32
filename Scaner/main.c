@@ -1,13 +1,13 @@
 #include "stm32f10x.h"                  // Device header
 #include "funct.h"
-//29_05
+
 
 
 extern volatile uint64_t msTime;  
 
 int main(void){	
     portInit(); 
-	init_TFT();
+		init_TFT();
 
     while(1){
     ;
