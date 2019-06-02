@@ -1,25 +1,43 @@
 #include "stm32f10x.h"                  // Device header
 #include "funct.h"
+#include "GUI.h"
+#include "WindowDLG.h"
 
-#define CS GPIO_Pin_1
+//#define CS GPIO_Pin_1
+
+
+//http://www.cyberforum.ru/arm/thread2089985-page21.html
+//http://forum.easyelectronics.ru/viewtopic.php?f=35&t=17386&start=475http://forum.easyelectronics.ru/viewtopic.php?f=35&t=17386&p=414039&hilit=Кастомный+драйвер+элементарно+прикручивается#p414039
+
+
 
 
 extern volatile uint64_t msTime;  
 
-int main(void){	
-<<<<<<< HEAD
-    portInit(); 
-		init_TFT();		
-=======
-    //portInit(); 
-	//init_TFT();
-    volatile uint8_t data1 = 0xF3;
-    volatile uint16_t port1 = 0;
-    port1 = ((data1 << 7) & 0x7f80)| 0x8000;
 
->>>>>>> a795ee346a81b17659b96aecfb4912bb7b397f3c
+int main(void){
+		portInit();
+		timerInit();    
+	  __enable_irq ();
+	  initDelay();
+		//Delay_ms(500);
+		
+		GUI_Init();
+    //display_rgb(GREEN);
+	  init_TFT();
+    //CreateWindow();
+	  //display_rgb(RED);
+    
+
+
     while(1){
-    ;
+			display_rgb(GREEN);
+			Delay_ms(1000);
+			display_rgb(RED);
+			Delay_ms(1000);
+			//GUI_Delay(100);
+			;
+    
     }
 }
 
@@ -31,7 +49,7 @@ int main(void){
 
 void TIM2_IRQHandler(){
     if (TIM2->SR & TIM_SR_UIF){
-      msTime++;
+      OS_TimeMS_Inc();
       TIM2->SR &= ~TIM_SR_UIF;
    }          
 }

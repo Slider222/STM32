@@ -27,28 +27,36 @@ int fputc(int ch, FILE *f) {
 
 void portInit(void){
     RCC->APB2ENR |= RCC_APB2ENR_IOPAEN | RCC_APB2ENR_IOPBEN | RCC_APB2ENR_AFIOEN | RCC_APB2ENR_IOPCEN;     //включение тактирования портов 
-        
-    GPIOA->CRH &= ~GPIO_CRH_CNF8_0;        //Порт A8 на выход
-    GPIOA->CRH |= GPIO_CRH_MODE8;
+    //RCC->APB1ENR |= RCC_AHBENR_CRCEN; 
+    RCC->AHBENR |= RCC_AHBENR_CRCEN;
+//    GPIOA->CRH &= ~GPIO_CRH_CNF8_0;        //Порт A8 на выход
+//    GPIOA->CRH |= GPIO_CRH_MODE8;
 
     GPIOA->CRL &= ~((GPIO_CRL_CNF7_0)|(GPIO_CRL_CNF6_0)|(GPIO_CRL_CNF5_0)|(GPIO_CRL_CNF4_0)|(GPIO_CRL_CNF3_0)|(GPIO_CRL_CNF2_0)|(GPIO_CRL_CNF1_0)|(GPIO_CRL_CNF0_0));
     GPIOA->CRL |= (GPIO_CRL_MODE7)|(GPIO_CRL_MODE6)|(GPIO_CRL_MODE5)|(GPIO_CRL_MODE4)|(GPIO_CRL_MODE3)|(GPIO_CRL_MODE2)|(GPIO_CRL_MODE1)|(GPIO_CRL_MODE0);
 
-    GPIOB->CRL &= ~((GPIO_CRL_CNF0_0)|(GPIO_CRL_CNF1_0)|(GPIO_CRL_CNF5_0)|(GPIO_CRL_CNF6_0)|(GPIO_CRL_CNF7_0));
-    GPIOB->CRL |= (GPIO_CRL_MODE0)|(GPIO_CRL_MODE1)|(GPIO_CRL_MODE5)|(GPIO_CRL_MODE6)|(GPIO_CRL_MODE7);
-
-
+    GPIOB->CRH &= ~((GPIO_CRH_CNF8_0)|(GPIO_CRH_CNF9_0)|(GPIO_CRH_CNF10_0)|(GPIO_CRH_CNF11_0)|(GPIO_CRH_CNF12_0)|(GPIO_CRH_CNF13_0)|(GPIO_CRH_CNF14_0));
+    GPIOB->CRH |= (GPIO_CRH_MODE8)|(GPIO_CRH_MODE9)|(GPIO_CRH_MODE10)|(GPIO_CRH_MODE11)|(GPIO_CRH_MODE12)|(GPIO_CRH_MODE13)|(GPIO_CRH_MODE14);
+    
+	  GPIOB->CRL &= ~(GPIO_CRL_CNF7_0);
+    GPIOB->CRL |= (GPIO_CRL_MODE7);
     
 
     GPIOC->CRH &= ~GPIO_CRH_CNF13_0;      //Порт C13 на выход  
     GPIOC->CRH |= GPIO_CRH_MODE13;
 
-    GPIOA->CRL |= GPIO_CRL_CNF0_0;        //Порт A0 на вход
+    //GPIOA->CRL |= GPIO_CRL_CNF0_0;        //Порт A0 на вход
+	
+	  set_CS;
+		set_RS;
+		set_WR;
+		//set_RES;
+		set_RD;
 }                                    
 
 void timerInit(){
     RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;          //включаем тактирование
-    TIM2->PSC = 72-1;                            //предделитель таймера 2 (72000000/65534 = 1098Гц)
+    TIM2->PSC = 24-1;                            //предделитель таймера 2 (72000000/65534 = 1098Гц)
     TIM2->ARR = 1000;                            //
    
     //__enable_irq ();                                  //глобальное разрешение прерываний

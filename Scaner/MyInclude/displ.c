@@ -2,33 +2,65 @@
 #include "NewFont.h"
 
 
+//void lcdWriteCommand(uint8_t command){
+//      static uint16_t data[4];     
+//      data[0] = (0x0000 & 0x7f80);                               //обнуляем порт и сброс     
+//      data[1] = ((command << 7) & 0x7f80) | 0x8000;              //данные на порт и запись 
+//      data[2] = ((command << 7) & 0x7f80);                      //данные на порт и сброс
+//      data[3] = ((command << 7) & 0x7f80) | 0x8000;             //данные на порт и запись
+//      reset_RS;
+//      reset_CS;
+//      for (int i = 0; i < 4; i++){
+//          dataPort = data[i];
+//      }      
+//      set_RS;                                     //тип - команда
+//      set_CS;                                     //выбор чипа
+//          
+//}
+
+//void write_data (unsigned int data){
+//      static uint16_t array[4];     
+//      array[0] = ((data >> 1) & 0x7f80);                //сброс записи
+//      array[1] = ((data >> 1) & 0x7f80) | 0x8000;       //установка записи    
+//      array[2] = ((data << 3)& 0x7f80);                       //сброс записи 
+//      array[3] = ((data << 3)& 0x7f80) | 0x8000;              //установка записи      
+//      set_RS;                                           //тип данные
+//      reset_CS;                                         //выбор чипа
+//      for (int i = 0; i < 4; i++){
+//          dataPort = array[i];
+//      }
+//      set_RS;                                              //тип данные
+//      set_CS;                                              //выбор чипа
+//       
+//}
+
+
 void lcdWriteCommand(uint8_t command){
-      static uint16_t data[4];     
-      data[0] = (0x0000 & 0x7f80);                               //обнуляем порт и сброс     
-      data[1] = ((command << 7) & 0x7f80) | 0x8000;              //данные на порт и запись 
-      data[2] = ((command << 7) & 0x7f80);                      //данные на порт и сброс
-      data[3] = ((command << 7) & 0x7f80) | 0x8000;             //данные на порт и запись
       reset_RS;
-      reset_CS;
-      for (int i = 0; i < 4; i++){
-          dataPort = data[i];
-      }      
+      reset_CS;	
+      dataPort = ((0x0000 >> 1) & 0x7f80);                               //обнуляем порт и сброс  
+	    reset_WR;
+			set_WR;
+			dataPort = ((command << 7) & 0x7f80);
+			reset_WR;     
+	    set_WR;
+	
       set_RS;                                     //тип - команда
       set_CS;                                     //выбор чипа
           
 }
 
 void write_data (unsigned int data){
-      static uint16_t array[4];     
-      array[0] = ((data >> 1) & 0x7f80);                //сброс записи
-      array[1] = ((data >> 5) & 0x7f80) | 0x8000;       //установка записи    
-      array[2] = ((data << 3)& 0x7f80);                       //сброс записи 
-      array[3] = ((data << 3)& 0x7f80) | 0x8000;              //установка записи      
+           
+       
       set_RS;                                           //тип данные
-      reset_CS;                                         //выбор чипа
-      for (int i = 0; i < 4; i++){
-          dataPort = array[i];
-      }
+      reset_CS;                                         //выбор чипа	    
+			dataPort = ((data >> 1) & 0x7f80);
+	    reset_WR;
+      set_WR;	    
+	    dataPort = ((data << 7)& 0x7f80); 
+	    reset_WR;
+	    set_WR;
       set_RS;                                              //тип данные
       set_CS;                                              //выбор чипа
        
@@ -69,7 +101,7 @@ void lcdSetPos(uint16_t poz_x_start, uint16_t poz_x_end, uint16_t poz_y_start, u
 void display_rgb (unsigned int data)
 {
 	unsigned int i,j;	
-	//Display_Home();
+	Display_Home();
 	for(i=0;i<320;i++)
 	{
 		for(j=0;j<240;j++)

@@ -116,7 +116,7 @@
           <TargetDllName>SARMCM3.DLL</TargetDllName>
           <TargetDllArguments></TargetDllArguments>
           <TargetDlgDll>TARMSTM.DLL</TargetDlgDll>
-          <TargetDlgDllArguments>-pSTM32F103C8</TargetDlgDllArguments>
+          <TargetDlgDllArguments>-pSTM32F100RC</TargetDlgDllArguments>
         </DllOption>
         <DebugOption>
           <OPTHX>
@@ -133,12 +133,12 @@
             <UseExternalTool>0</UseExternalTool>
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
-            <Capability>0</Capability>
-            <DriverSelection>-1</DriverSelection>
+            <Capability>1</Capability>
+            <DriverSelection>4096</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\MyInclude</IncludePath>
+              <IncludePath>.\MyInclude;.\EmWin;.\EmWin\inc;.\EmWin\src</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -409,6 +409,36 @@
               <FileName>displ.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\MyInclude\displ.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>EmWin</GroupName>
+          <Files>
+            <File>
+              <FileName>GUI_X.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\EmWin\src\GUI_X.c</FilePath>
+            </File>
+            <File>
+              <FileName>GUIConf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\EmWin\src\GUIConf.c</FilePath>
+            </File>
+            <File>
+              <FileName>LCDConf_FlexColor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\EmWin\src\LCDConf_FlexColor.c</FilePath>
+            </File>
+            <File>
+              <FileName>WindowDLG.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\EmWin\src\WindowDLG.c</FilePath>
+            </File>
+            <File>
+              <FileName>STemWin532_CM0_Keil.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>.\EmWin\STemWin532_CM0_Keil.lib</FilePath>
             </File>
           </Files>
         </Group>

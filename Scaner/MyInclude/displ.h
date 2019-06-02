@@ -5,22 +5,27 @@
 
 #include "Funct.h"
 
+#define RED     0xF864
+#define GREEN   0x67E0
+#define BLUE    0x48FF
 
-#define set_CS (GPIOB->BSRR |= GPIO_BSRR_BS0)
-#define set_RS (GPIOB->BSRR |= GPIO_BSRR_BS1)
-#define set_WR (GPIOA->BSRR |= GPIO_BSRR_BS8)
-#define set_RD (GPIOB->BSRR |= GPIO_BSRR_BS7)
-#define set_LED (GPIOB->BSRR |= GPIO_BSRR_BS6)
-#define set_RES (GPIOB->BSRR |= GPIO_BSRR_BS5)
+
+
+#define set_CS (GPIOA->BSRR |= GPIO_BSRR_BS5)
+#define set_RS (GPIOA->BSRR |= GPIO_BSRR_BS4)
+#define set_WR (GPIOA->BSRR |= GPIO_BSRR_BS3)
+#define set_RD (GPIOA->BSRR |= GPIO_BSRR_BS2)
+#define set_LED (GPIOA->BSRR |= GPIO_BSRR_BS0)
+#define set_RES (GPIOA->BSRR |= GPIO_BSRR_BS1)
 #define set_PC13 (GPIOC->BSRR |= GPIO_BSRR_BS13)
 #define set_PC12 (GPIOC->BSRR |= GPIO_BSRR_BS12)
 
-#define reset_CS (GPIOB->BSRR |= GPIO_BSRR_BR0)
-#define reset_RS (GPIOB->BSRR |= GPIO_BSRR_BR1)
-#define reset_WR (GPIOA->BSRR |= GPIO_BSRR_BR8)
-#define reset_RD (GPIOB->BSRR |= GPIO_BSRR_BR7)
-#define reset_LED (GPIOB->BSRR |= GPIO_BSRR_BR6)
-#define reset_RES (GPIOB->BSRR |= GPIO_BSRR_BR5)
+#define reset_CS (GPIOA->BSRR |= GPIO_BSRR_BR5)
+#define reset_RS (GPIOA->BSRR |= GPIO_BSRR_BR4)
+#define reset_WR (GPIOA->BSRR |= GPIO_BSRR_BR3)
+#define reset_RD (GPIOA->BSRR |= GPIO_BSRR_BR2)
+#define reset_LED (GPIOA->BSRR |= GPIO_BSRR_BR0)
+#define reset_RES (GPIOA->BSRR |= GPIO_BSRR_BR1)
 #define reset_PC13 (GPIOC->BSRR |= GPIO_BSRR_BR13)
 #define reset_PC12 (GPIOC->BSRR |= GPIO_BSRR_BR12)
 
