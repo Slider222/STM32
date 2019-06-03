@@ -1,16 +1,16 @@
 /*********************************************************************
-*          Portions COPYRIGHT 2016 STMicroelectronics                *
+*          Portions COPYRIGHT 2013 STMicroelectronics                *
 *          Portions SEGGER Microcontroller GmbH & Co. KG             *
 *        Solutions for real time microcontroller applications        *
 **********************************************************************
 *                                                                    *
-*        (c) 1996 - 2015  SEGGER Microcontroller GmbH & Co. KG       *
+*        (c) 1996 - 2013  SEGGER Microcontroller GmbH & Co. KG       *
 *                                                                    *
 *        Internet: www.segger.com    Support:  support@segger.com    *
 *                                                                    *
 **********************************************************************
 
-** emWin V5.32 - Graphical user interface for embedded applications **
+** emWin V5.20 - Graphical user interface for embedded applications **
 All  Intellectual Property rights  in the Software belongs to  SEGGER.
 emWin is protected by  international copyright laws.  Knowledge of the
 source code may not be used to write a similar product.  This file may
@@ -27,12 +27,18 @@ Full source code is available at: www.segger.com
 
 We appreciate your understanding and fairness.
 ----------------------------------------------------------------------
-File        : GUIConf.h
-Purpose     : Configures emWins abilities, fonts etc.
-----------------------------------------------------------------------
+File        : LCDConf.h
+Purpose     : Display driver configuration file
+---------------------------END-OF-HEADER------------------------------
 */
 
 /**
+  ******************************************************************************
+  * @file    LCDConf.h
+  * @author  MCD Application Team
+  * @version V1.0.0
+  * @date    22-July-2013
+  * @brief   Display driver configuration file
   ******************************************************************************
   * @attention
   *
@@ -50,49 +56,10 @@ Purpose     : Configures emWins abilities, fonts etc.
   *
   ******************************************************************************
   */
- 
-#ifndef GUICONF_H
-#define GUICONF_H
 
-/*********************************************************************
-*
-*       Multi layer/display support
-*/
-#define GUI_NUM_LAYERS            2    // Maximum number of available layers
+#ifndef LCDCONF_H
+#define LCDCONF_H
 
-/*********************************************************************
-*
-*       Multi tasking support
-*/
-#ifdef OS_SUPPORT
- #define GUI_OS                    (1)  // Compile with multitasking support
-#else
- #define GUI_OS                    (0)
-#endif
+#endif /* LCDCONF_H */
 
-/*********************************************************************
-*
-*       Configuration of touch support
-*/
-#ifndef   GUI_SUPPORT_TOUCH
-  #define GUI_SUPPORT_TOUCH       (0)  // Support touchscreen
-#endif
-
-/*********************************************************************
-*
-*       Default font
-*/
-#define GUI_DEFAULT_FONT          &GUI_Font6x8
-
-/*********************************************************************
-*
-*         Configuration of available packages
-*/
-#define GUI_SUPPORT_MOUSE         (0)  // Support a mouse
-#define GUI_SUPPORT_UNICODE       (1)  // Support mixed ASCII/UNICODE strings
-#define GUI_WINSUPPORT            (1)  // Window manager package available
-#define GUI_SUPPORT_MEMDEV        (1)  // Memory devices available
-#define GUI_SUPPORT_AA            (1)  // Anti aliasing available
-#define WM_SUPPORT_STATIC_MEMDEV  (0)  // Static memory devices available
-
-#endif  /* Avoid multiple inclusion */
+/*************************** End of file ****************************/

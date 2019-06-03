@@ -27,7 +27,7 @@ int fputc(int ch, FILE *f) {
 
 void portInit(void){
     RCC->APB2ENR |= RCC_APB2ENR_IOPAEN | RCC_APB2ENR_IOPBEN | RCC_APB2ENR_AFIOEN | RCC_APB2ENR_IOPCEN;     //включение тактирования портов 
-    //RCC->APB1ENR |= RCC_AHBENR_CRCEN; 
+     
     RCC->AHBENR |= RCC_AHBENR_CRCEN;
 //    GPIOA->CRH &= ~GPIO_CRH_CNF8_0;        //Порт A8 на выход
 //    GPIOA->CRH |= GPIO_CRH_MODE8;
@@ -38,20 +38,20 @@ void portInit(void){
     GPIOB->CRH &= ~((GPIO_CRH_CNF8_0)|(GPIO_CRH_CNF9_0)|(GPIO_CRH_CNF10_0)|(GPIO_CRH_CNF11_0)|(GPIO_CRH_CNF12_0)|(GPIO_CRH_CNF13_0)|(GPIO_CRH_CNF14_0));
     GPIOB->CRH |= (GPIO_CRH_MODE8)|(GPIO_CRH_MODE9)|(GPIO_CRH_MODE10)|(GPIO_CRH_MODE11)|(GPIO_CRH_MODE12)|(GPIO_CRH_MODE13)|(GPIO_CRH_MODE14);
     
-	  GPIOB->CRL &= ~(GPIO_CRL_CNF7_0);
+	GPIOB->CRL &= ~(GPIO_CRL_CNF7_0);
     GPIOB->CRL |= (GPIO_CRL_MODE7);
     
 
-    GPIOC->CRH &= ~GPIO_CRH_CNF13_0;      //Порт C13 на выход  
+//    GPIOC->CRH &= ~GPIO_CRH_CNF13_0;      //Порт C13 на выход  
     GPIOC->CRH |= GPIO_CRH_MODE13;
 
     //GPIOA->CRL |= GPIO_CRL_CNF0_0;        //Порт A0 на вход
 	
 	  set_CS;
-		set_RS;
-		set_WR;
-		//set_RES;
-		set_RD;
+	  set_RS;
+	  set_WR;
+	  reset_RES;
+	  set_RD;
 }                                    
 
 void timerInit(){
@@ -98,6 +98,11 @@ void send_to_uart(uint8_t data) {
      USART1->DR = data;                     //Отсылаем байт через UART
 
 }
+
+
+
+
+
 
 
 

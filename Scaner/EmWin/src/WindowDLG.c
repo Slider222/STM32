@@ -29,8 +29,8 @@
 *
 **********************************************************************
 */
-#define ID_WINDOW_0 (GUI_ID_USER + 0x00)
-#define ID_BUTTON_0 (GUI_ID_USER + 0x01)
+#define ID_WINDOW_0  (GUI_ID_USER + 0x00)
+#define ID_TEXT_0    (GUI_ID_USER + 0x01)
 
 
 // USER START (Optionally insert additional defines)
@@ -52,7 +52,7 @@
 */
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   { WINDOW_CreateIndirect, "Window", ID_WINDOW_0, 0, 0, 240, 320, 0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "Button", ID_BUTTON_0, 72, 90, 80, 20, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "Text", ID_TEXT_0, 0, 0, 236, 20, 0, 0x64, 0 },
   // USER START (Optionally insert additional widgets)
   // USER END
 };
@@ -72,33 +72,24 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
 *       _cbDialog
 */
 static void _cbDialog(WM_MESSAGE * pMsg) {
-  int NCode;
-  int Id;
+  WM_HWIN hItem;
   // USER START (Optionally insert additional variables)
   // USER END
 
   switch (pMsg->MsgId) {
-  case WM_NOTIFY_PARENT:
-    Id    = WM_GetId(pMsg->hWinSrc);
-    NCode = pMsg->Data.v;
-    switch(Id) {
-    case ID_BUTTON_0: // Notifications sent by 'Button'
-      switch(NCode) {
-      case WM_NOTIFICATION_CLICKED:
-        // USER START (Optionally insert code for reacting on notification message)
-        // USER END
-        break;
-      case WM_NOTIFICATION_RELEASED:
-        // USER START (Optionally insert code for reacting on notification message)
-        // USER END
-        break;
-      // USER START (Optionally insert additional code for further notification handling)
-      // USER END
-      }
-      break;
-    // USER START (Optionally insert additional code for further Ids)
+  case WM_INIT_DIALOG:
+    //
+    // Initialization of 'Window'
+    //
+    hItem = pMsg->hWin;
+    WINDOW_SetBkColor(hItem, GUI_MAKE_COLOR(0x0040FF00));
+    //
+    // Initialization of 'Text'
+    //
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_0);
+    TEXT_SetText(hItem, "Home Проверка");
+    // USER START (Optionally insert additional code for further widget initialization)
     // USER END
-    }
     break;
   // USER START (Optionally insert additional message handling)
   // USER END
@@ -119,14 +110,12 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
 *       CreateWindow
 */
 
+
 WM_HWIN CreateWindow(void) {
   WM_HWIN hWin;
 
   hWin = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), _cbDialog, WM_HBKWIN, 0, 0);
   return hWin;
 }
-
-// USER START (Optionally insert additional public code)
-// USER END
 
 /*************************** End of file ****************************/

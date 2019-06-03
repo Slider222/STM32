@@ -49,6 +49,9 @@ void write_symbol(int x, int y, int Size, unsigned int Color, unsigned int Backc
 void write_String(unsigned int x, unsigned int y, unsigned int color, unsigned int phone, char *str, unsigned char size);
 
 
+void displ_PutPixel (uint16_t x, uint16_t y, uint16_t color);
+uint16_t displ_GetPixel (uint16_t x, uint16_t y);
+void displ_FillRect_fast (uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t color);
 
 #endif
 

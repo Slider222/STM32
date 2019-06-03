@@ -1,16 +1,16 @@
 /*********************************************************************
-*          Portions COPYRIGHT 2016 STMicroelectronics                *
+*          Portions COPYRIGHT 2013 STMicroelectronics                *
 *          Portions SEGGER Microcontroller GmbH & Co. KG             *
 *        Solutions for real time microcontroller applications        *
 **********************************************************************
 *                                                                    *
-*        (c) 1996 - 2015  SEGGER Microcontroller GmbH & Co. KG       *
+*        (c) 1996 - 2013  SEGGER Microcontroller GmbH & Co. KG       *
 *                                                                    *
 *        Internet: www.segger.com    Support:  support@segger.com    *
 *                                                                    *
 **********************************************************************
 
-** emWin V5.32 - Graphical user interface for embedded applications **
+** emWin V5.20 - Graphical user interface for embedded applications **
 All  Intellectual Property rights  in the Software belongs to  SEGGER.
 emWin is protected by  international copyright laws.  Knowledge of the
 source code may not be used to write a similar product.  This file may
@@ -34,6 +34,12 @@ Purpose     : Display controller initialization
 
 /**
   ******************************************************************************
+  * @file    GUIConf.c
+  * @author  MCD Application Team
+  * @version V1.0.0
+  * @date    22-July-2013
+  * @brief   Display controller initialization
+  ******************************************************************************
   * @attention
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
@@ -55,14 +61,73 @@ Purpose     : Display controller initialization
 
 /*********************************************************************
 *
-*       Defines
+*       Defines, configurable
 *
 **********************************************************************
 */
+
 //
 // Define the available number of bytes available for the GUI
 //
-#define GUI_NUMBYTES  0x200000
+#define GUI_NUMBYTES  (1024) *  32   // 64 KByte
+
+/*
+#if defined (STM32F429X)
+ #define GUI_NUMBYTES  (1024) *  96    // x KByte
+#elif defined (STM32F40XX) || defined (STM32F2XX) || defined (STM32F10X_HD_VL)
+ #define GUI_NUMBYTES  (1024) *  512   // x KByte
+#elif defined (STM32F10X_HD)
+ #define GUI_NUMBYTES  (1024) *  53   // x KByte
+#elif defined (STM32F10X_MD)
+ #define GUI_NUMBYTES  (1024) *  10   // x KByte
+#elif defined (STM32F10X_MD_VL) || defined (STM32F0XX)
+ #define GUI_NUMBYTES  (1024) *  3   // x KByte
+#elif defined (STM32F30X)
+ #define GUI_NUMBYTES  (1024) *  25   // x KByte
+#elif defined (STM32F37X)
+ #define GUI_NUMBYTES  (1024) *  22   // x KByte
+#elif defined (STM32L1XX_HD)
+ #define GUI_NUMBYTES  (1024) *  35   // x KByte
+#elif defined (STM32L1XX_MD)
+ #define GUI_NUMBYTES  (1024) *  6   // x KByte
+#else
+ #define GUI_NUMBYTES  (1024) *  40   // x KByte
+#endif
+*/
+
+/*********************************************************************
+*
+*       Static data
+*
+**********************************************************************
+*/
+
+
+/* 32 bit aligned memory area */
+static U32 extMem[GUI_NUMBYTES / 4];
+
+/*
+#ifdef __ICCARM__
+ #if defined (STM32F40XX) || defined (STM32F2XX)
+  #pragma location=0x64000000
+   static __no_init U32 extMem[GUI_NUMBYTES / 4];
+ #elif defined (STM32F10X_HD_VL)
+  #pragma location=0x68000000
+   static __no_init U32 extMem[GUI_NUMBYTES / 4];
+ #else
+   U32 extMem[GUI_NUMBYTES / 4];
+ #endif
+#elif defined (__CC_ARM)
+ #if defined (STM32F40XX) || defined (STM32F2XX)
+   static U32 extMem[GUI_NUMBYTES / 4] __attribute__((at(0x64000000)));
+ #elif defined (STM32F10X_HD_VL)
+   static U32 extMem[GUI_NUMBYTES / 4] __attribute__((at(0x68000000)));
+ #else
+   U32 extMem[GUI_NUMBYTES / 4];
+ #endif
+#endif   
+*/
+
 
 /*********************************************************************
 *
@@ -78,19 +143,15 @@ Purpose     : Display controller initialization
 *   Called during the initialization process in order to set up the
 *   available memory for the GUI.
 */
-void GUI_X_Config(void) {
-  //
-  // 32 bit aligned memory area
-  //
-  static U32 aMemory[GUI_NUMBYTES / 4];
-  //
-  // Assign memory to emWin
-  //
-  GUI_ALLOC_AssignMemory(aMemory, GUI_NUMBYTES);
-  //
-  // Set default font
-  //
-  GUI_SetDefaultFont(GUI_FONT_6X8);
+void GUI_X_Config(void)
+{
+  GUI_ALLOC_AssignMemory(extMem, GUI_NUMBYTES);
 }
+
+void GUI_TOUCH_X_ActivateX(void){return;}
+void GUI_TOUCH_X_ActivateY(void){return;}
+void GUI_TOUCH_X_Disable  (void){return;}
+int  GUI_TOUCH_X_MeasureX (void){return 0;}
+int  GUI_TOUCH_X_MeasureY (void){return 0;}
 
 /*************************** End of file ****************************/

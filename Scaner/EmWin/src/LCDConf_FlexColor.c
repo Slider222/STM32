@@ -54,6 +54,7 @@ Purpose     : Display controller configuration (single layer)
 #include "GUI.h"
 #include "GUIDRV_FlexColor.h"
 #include "LCDConf_FlexColor.h"
+//#include "LCDConf.h"
 
 /*********************************************************************
 *

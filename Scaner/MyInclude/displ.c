@@ -36,15 +36,14 @@
 
 
 void lcdWriteCommand(uint8_t command){
+      dataPort = ((0x0000 >> 1) & 0x7f80);
       reset_RS;
-      reset_CS;	
-      dataPort = ((0x0000 >> 1) & 0x7f80);                               //обнуляем порт и сброс  
-	    reset_WR;
-			set_WR;
-			dataPort = ((command << 7) & 0x7f80);
-			reset_WR;     
-	    set_WR;
-	
+      reset_CS;                                     //обнуляем порт и сброс  
+	  reset_WR;
+	  set_WR;
+	  dataPort = ((command << 7) & 0x7f80);
+	  reset_WR;     
+	  set_WR;	
       set_RS;                                     //тип - команда
       set_CS;                                     //выбор чипа
           
@@ -52,15 +51,14 @@ void lcdWriteCommand(uint8_t command){
 
 void write_data (unsigned int data){
            
-       
+      dataPort = ((data >> 1) & 0x7f80); 
       set_RS;                                           //тип данные
-      reset_CS;                                         //выбор чипа	    
-			dataPort = ((data >> 1) & 0x7f80);
-	    reset_WR;
+      reset_CS;                                         //выбор чипа 
+	  reset_WR;
       set_WR;	    
-	    dataPort = ((data << 7)& 0x7f80); 
-	    reset_WR;
-	    set_WR;
+	  dataPort = ((data << 7)& 0x7f80); 
+	  reset_WR;
+	  set_WR;
       set_RS;                                              //тип данные
       set_CS;                                              //выбор чипа
        
@@ -322,5 +320,23 @@ void write_String(unsigned int x, unsigned int y, unsigned int color, unsigned i
 		x += size * 8;
 		*str++;
 	}
+}
+
+void displ_PutPixel (uint16_t x, uint16_t y, uint16_t color){
+    lcdWriteCommand(0x0020);
+	write_data(x);
+	lcdWriteCommand(0x0021);
+	write_data(y);
+	lcdWriteCommand(0x0022);
+    write_data(color);
+    
+}
+
+uint16_t displ_GetPixel (uint16_t x, uint16_t y){
+
+}
+
+void displ_FillRect_fast (uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t color){
+
 }
 

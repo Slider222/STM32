@@ -2,6 +2,7 @@
 #include "funct.h"
 #include "GUI.h"
 #include "WindowDLG.h"
+#include "LCDConf.h"
 
 //#define CS GPIO_Pin_1
 
@@ -18,26 +19,18 @@ extern volatile uint64_t msTime;
 int main(void){
 		portInit();
 		timerInit();    
-	  __enable_irq ();
-	  initDelay();
-		//Delay_ms(500);
-		
-		GUI_Init();
-    //display_rgb(GREEN);
-	  init_TFT();
-    //CreateWindow();
-	  //display_rgb(RED);
-    
+        __enable_irq ();
+        initDelay();				
+	    GUI_Init();       
+        CreateWindow();
+	    //display_rgb(RED);
+         
 
 
     while(1){
-			display_rgb(GREEN);
-			Delay_ms(1000);
-			display_rgb(RED);
-			Delay_ms(1000);
-			//GUI_Delay(100);
-			;
-    
+
+		GUI_Delay(100);
+
     }
 }
 
