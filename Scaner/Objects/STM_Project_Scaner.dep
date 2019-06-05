@@ -17,7 +17,7 @@ I (.\MyInclude\delay.h)(0x5CEEE735)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x588BC994)
 I (.\MyInclude\AnMotors.h)(0x5CEEE735)
 I (.\MyInclude\displ.h)(0x5CF6DE62)
-I (.\EmWin\inc\GUI.h)(0x5CF6BE1B)
+I (.\EmWin\inc\GUI.h)(0x5CF80FB6)
 I (.\EmWin\inc\GUI_ConfDefaults.h)(0x5CA7891C)
 I (.\EmWin\inc\GUIConf.h)(0x5CF6BFE4)
 I (.\EmWin\inc\GUI_Type.h)(0x5CA7891C)
@@ -133,7 +133,7 @@ I (MyInclude\AnMotors.h)(0x5CEEE735)
 I (MyInclude\NewFont.h)(0x5CEEE735)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x588BC994)
 F (.\EmWin\src\GUI_X.c)(0x5CF56205)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\MyInclude -I .\EmWin -I .\EmWin\inc -I .\EmWin\src-I.\RTE\Device\STM32F100RC-I.\RTE\_Scaner-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD_VL-o .\objects\gui_x.o --omf_browse .\objects\gui_x.crf --depend .\objects\gui_x.d)
-I (.\EmWin\inc\GUI.h)(0x5CF6BE1B)
+I (.\EmWin\inc\GUI.h)(0x5CF80FB6)
 I (.\EmWin\inc\GUI_ConfDefaults.h)(0x5CA7891C)
 I (.\EmWin\inc\GUIConf.h)(0x5CF6BFE4)
 I (.\EmWin\inc\GUI_Type.h)(0x5CA7891C)
@@ -141,7 +141,7 @@ I (.\EmWin\inc\LCD.h)(0x5CA7891C)
 I (.\EmWin\inc\Global.h)(0x5CA7891C)
 I (.\EmWin\inc\GUI_Version.h)(0x5CA7891C)
 F (.\EmWin\src\GUIConf.c)(0x5CF56205)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\MyInclude -I .\EmWin -I .\EmWin\inc -I .\EmWin\src-I.\RTE\Device\STM32F100RC-I.\RTE\_Scaner-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD_VL-o .\objects\guiconf.o --omf_browse .\objects\guiconf.crf --depend .\objects\guiconf.d)
-I (.\EmWin\inc\GUI.h)(0x5CF6BE1B)
+I (.\EmWin\inc\GUI.h)(0x5CF80FB6)
 I (.\EmWin\inc\GUI_ConfDefaults.h)(0x5CA7891C)
 I (.\EmWin\inc\GUIConf.h)(0x5CF6BFE4)
 I (.\EmWin\inc\GUI_Type.h)(0x5CA7891C)
@@ -158,7 +158,7 @@ I (.\EmWin\inc\GUI_Type.h)(0x5CA7891C)
 I (.\EmWin\inc\LCD.h)(0x5CA7891C)
 I (.\EmWin\inc\Global.h)(0x5CA7891C)
 I (.\EmWin\inc\WM_GUI.h)(0x5CA7891C)
-I (.\EmWin\inc\GUI.h)(0x5CF6BE1B)
+I (.\EmWin\inc\GUI.h)(0x5CF80FB6)
 I (.\EmWin\inc\GUI_Version.h)(0x5CA7891C)
 I (.\EmWin\inc\BUTTON.h)(0x5CA7891C)
 I (.\EmWin\inc\DIALOG_Intern.h)(0x5CA7891C)
@@ -199,7 +199,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588BC994)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588BC994)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588BC994)
 I (.\MyInclude\displ.h)(0x5CF6DE62)
-I (.\MyInclude\Funct.h)(0x5CF6DE63)
+I (.\MyInclude\funct.h)(0x5CF6DE63)
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x58257EBC)
 I (.\RTE\_Scaner\RTE_Components.h)(0x5CF02F36)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.5.1\CMSIS\Core\Include\core_cm3.h)(0x5C8F9424)
@@ -221,7 +221,7 @@ I (.\EmWin\inc\LCD.h)(0x5CA7891C)
 I (.\EmWin\inc\GUI_ConfDefaults.h)(0x5CA7891C)
 I (.\EmWin\inc\GUIConf.h)(0x5CF6BFE4)
 I (.\EmWin\inc\Global.h)(0x5CA7891C)
-I (.\EmWin\inc\GUI.h)(0x5CF6BE1B)
+I (.\EmWin\inc\GUI.h)(0x5CF80FB6)
 I (.\EmWin\inc\GUI_Type.h)(0x5CA7891C)
 I (.\EmWin\inc\GUI_Version.h)(0x5CA7891C)
 I (.\EmWin\inc\GUI_Private.h)(0x5CA7891C)
@@ -261,7 +261,7 @@ I (.\EmWin\inc\TEXT.h)(0x5CA7891C)
 I (.\EmWin\inc\TREEVIEW.h)(0x5CA7891C)
 I (.\EmWin\inc\KNOB.h)(0x5CA7891C)
 F (.\EmWin\src\Times New Roman24.c)(0x5CF58275)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\MyInclude -I .\EmWin -I .\EmWin\inc -I .\EmWin\src-I.\RTE\Device\STM32F100RC-I.\RTE\_Scaner-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD_VL-o ".\objects\times new roman24.o" --omf_browse ".\objects\times new roman24.crf" --depend ".\objects\times new roman24.d")
-I (.\EmWin\inc\GUI.h)(0x5CF6BE1B)
+I (.\EmWin\inc\GUI.h)(0x5CF80FB6)
 I (.\EmWin\inc\GUI_ConfDefaults.h)(0x5CA7891C)
 I (.\EmWin\inc\GUIConf.h)(0x5CF6BFE4)
 I (.\EmWin\inc\GUI_Type.h)(0x5CA7891C)
