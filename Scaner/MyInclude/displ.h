@@ -31,6 +31,7 @@
 
 
 #define dataPort (GPIOB->ODR)
+#define dataPortRead (GPIOB->IDR)
 
 #define setSPT    {lcdWriteCommand(0x07);write_data(0x0153);}    //0053  spt = 1 2screen
 #define resetSPT  {lcdWriteCommand(0x07); write_data(0x0053);}  //0053  spt = 0 1screen
