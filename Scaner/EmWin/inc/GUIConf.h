@@ -88,7 +88,7 @@ Purpose     : Configures emWins abilities, fonts etc.
 *
 *         Configuration of available packages
 */
-#define GUI_SUPPORT_MOUSE         (0)  // Support a mouse
+#define GUI_SUPPORT_MOUSE         (1)  // Support a mouse
 #define GUI_SUPPORT_UNICODE       (1)  // Support mixed ASCII/UNICODE strings
 #define GUI_WINSUPPORT            (1)  // Window manager package available
 #define GUI_SUPPORT_MEMDEV        (1)  // Memory devices available

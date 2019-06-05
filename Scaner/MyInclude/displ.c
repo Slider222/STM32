@@ -1,5 +1,6 @@
 #include "displ.h"
 #include "NewFont.h"
+#include "stdlib.h"
 
 
 //void lcdWriteCommand(uint8_t command){
@@ -36,32 +37,52 @@
 
 
 void lcdWriteCommand(uint8_t command){
-      dataPort = ((0x0000 >> 1) & 0x7f80);
-      reset_RS;
-      reset_CS;                                     //обнуляем порт и сброс  
+    dataPort = ((0x0000 >> 1) & 0x7f80);
+    reset_RS;
+    reset_CS;                                     //обнуляем порт и сброс  
 	  reset_WR;
 	  set_WR;
 	  dataPort = ((command << 7) & 0x7f80);
 	  reset_WR;     
 	  set_WR;	
-      set_RS;                                     //тип - команда
-      set_CS;                                     //выбор чипа
+    set_RS;                                     //тип - команда
+    set_CS;                                     //выбор чипа
           
 }
 
-void write_data (unsigned int data){
-           
-      dataPort = ((data >> 1) & 0x7f80); 
-      set_RS;                                           //тип данные
-      reset_CS;                                         //выбор чипа 
+void write_data (unsigned int data){           
+    dataPort = ((data >> 1) & 0x7f80); 
+    set_RS;                                           //тип данные
+    reset_CS;                                         //выбор чипа 
 	  reset_WR;
-      set_WR;	    
+    set_WR;	    
 	  dataPort = ((data << 7)& 0x7f80); 
 	  reset_WR;
 	  set_WR;
-      set_RS;                                              //тип данные
-      set_CS;                                              //выбор чипа
+    set_RS;                                              //тип данные
+    set_CS;                                              //выбор чипа
        
+}
+
+unsigned int read_data (uint8_t data)
+{
+	unsigned int id;
+  
+	//lcdWriteCommand(data);
+	portToInput();
+	set_RS;                                           //тип данные
+  reset_CS;                                         //выбор чипа 
+	reset_RD;                                         //чтение	
+	id = (dataPort >> 7);
+	set_RD;
+	id = (id << 8);
+	reset_RD;
+	id |= (dataPort >> 7);
+	set_RD;
+	set_RS;
+  set_CS;	
+	portToOut();	
+	return id;
 }
 
 void Display_Home(void)
@@ -108,6 +129,83 @@ void display_rgb (unsigned int data)
 		}
 	}
 }
+
+void point (unsigned char size, unsigned int x, unsigned int y, unsigned int color)
+{
+	unsigned char j,i;
+
+	for(j=0;j < size; j++)
+	{
+		lcdWriteCommand(0x20);
+		write_data(x);
+		lcdWriteCommand(0x21);
+		write_data(y+j);
+		lcdWriteCommand(0x22);
+		for(i=0;i < size;i++) write_data(color);
+	}
+}
+
+
+void line (unsigned char size, int x1, int y1, int x2, int y2, unsigned int color)
+{
+	int deltaX = abs(x2 - x1);                   //работает по алгоритму Брезенхема
+	int deltaY = abs(y2 - y1);
+	int signX = x1 < x2 ? 1 : -1;
+	int signY = y1 < y2 ? 1 : -1;
+	int error = deltaX - deltaY;
+	
+	for (;;)
+	{
+		point (size,x1,y1,color);
+		
+		if(x1 == x2 && y1 == y2)
+		break;
+		
+		int error2 = error * 2;
+		
+		if(error2 > -deltaY)
+		{
+			error -= deltaY;
+			x1 += signX;
+		}
+		
+		if(error2 < deltaX)
+		{
+			error += deltaX;
+			y1 += signY;
+		}
+	}
+}
+
+void drawRect(unsigned int x0, unsigned int y0, unsigned int x1, unsigned int y1,  unsigned int color, unsigned char size, unsigned int backolor)
+{
+	line (size, x0,y0,x1,y0,color);  //горизонт 1
+	line (size, x0,y1,x1,y1,color);  //горизонт 2
+	
+	line (size, x0,y0,x0,y1,color);  //вертикаль 1
+	line (size, x1,y0,x1,y1,color);	 //вертикаль 2
+	
+	unsigned int delta_y = abs(y1 - y0);
+	
+	
+	for (unsigned int i = 0; i <= (delta_y - (size+1)); i++)
+	{
+		lcdWriteCommand(0x0020);
+		write_data(x0 + size);
+		lcdWriteCommand(0x0021);
+		write_data((y0 + i)+size);
+		lcdWriteCommand(0x0022);
+		
+		for (unsigned int j = x0; j <= (x1-(size+1)); j++)
+		{
+			write_data(backolor);
+		}
+	}
+	
+	
+}
+
+
 
 void init_TFT (void)
 {
@@ -324,19 +422,21 @@ void write_String(unsigned int x, unsigned int y, unsigned int color, unsigned i
 
 void displ_PutPixel (uint16_t x, uint16_t y, uint16_t color){
     lcdWriteCommand(0x0020);
-	write_data(x);
-	lcdWriteCommand(0x0021);
-	write_data(y);
-	lcdWriteCommand(0x0022);
+	  write_data(x);
+	  lcdWriteCommand(0x0021);
+	  write_data(y);
+	  lcdWriteCommand(0x0022);
     write_data(color);
     
 }
 
 uint16_t displ_GetPixel (uint16_t x, uint16_t y){
-
+		set_cursor(x, y);	  	  
+		return read_data(0x22);
 }
 
-void displ_FillRect_fast (uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t color){
-
+void displ_FillRect_fast (uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t color){		
+		drawRect(x1, y1, x2, y2, color, 1, color);
+	
 }
 

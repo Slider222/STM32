@@ -22,15 +22,15 @@
 // USER END
 
 #include "WindowDLG.h"
-
+#include "GUI.h"
 /*********************************************************************
 *
 *       Defines
 *
 **********************************************************************
 */
-#define ID_WINDOW_0  (GUI_ID_USER + 0x00)
-#define ID_TEXT_0    (GUI_ID_USER + 0x01)
+#define ID_WINDOW_0 (GUI_ID_USER + 0x00)
+#define ID_TEXT_0 (GUI_ID_USER + 0x01)
 
 
 // USER START (Optionally insert additional defines)
@@ -52,7 +52,7 @@
 */
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   { WINDOW_CreateIndirect, "Window", ID_WINDOW_0, 0, 0, 240, 320, 0, 0x0, 0 },
-  { TEXT_CreateIndirect, "Text", ID_TEXT_0, 0, 0, 236, 20, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "Text", ID_TEXT_0, 0, 0, 208, 25, 0, 0x64, 0 },
   // USER START (Optionally insert additional widgets)
   // USER END
 };
@@ -82,12 +82,13 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     // Initialization of 'Window'
     //
     hItem = pMsg->hWin;
-    WINDOW_SetBkColor(hItem, GUI_MAKE_COLOR(0x0040FF00));
+    WINDOW_SetBkColor(hItem, GUI_MAKE_COLOR(0x0000FFFF));
     //
     // Initialization of 'Text'
     //
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_0);
-    TEXT_SetText(hItem, "Home Проверка");
+    TEXT_SetFont(hItem, GUI_FONT_TIMESNEWROMAN24);
+    TEXT_SetText(hItem, "ПРИВЕТ");
     // USER START (Optionally insert additional code for further widget initialization)
     // USER END
     break;
@@ -110,12 +111,14 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
 *       CreateWindow
 */
 
-
 WM_HWIN CreateWindow(void) {
   WM_HWIN hWin;
 
   hWin = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), _cbDialog, WM_HBKWIN, 0, 0);
   return hWin;
 }
+
+// USER START (Optionally insert additional public code)
+// USER END
 
 /*************************** End of file ****************************/

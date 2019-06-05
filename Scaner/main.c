@@ -17,20 +17,29 @@ extern volatile uint64_t msTime;
 
 
 int main(void){
+	  int posCursorX = 0, posCursorY = 0;
 		portInit();
 		timerInit();    
-        __enable_irq ();
-        initDelay();				
-	    GUI_Init();       
-        CreateWindow();
-	    //display_rgb(RED);
-         
-
+    __enable_irq ();
+    initDelay();				
+	  GUI_Init();       
+    CreateWindow();
+  	//GUI_CURSOR_SetPosition(posCursorX,posCursorY);
+	  GUI_CURSOR_Show();
 
     while(1){
 
 		GUI_Delay(100);
-
+    for (int i = 0; i < 239; i++){
+				posCursorX += 20;
+        if (posCursorX > 238){
+						posCursorX = 0;
+				}
+				GUI_CURSOR_SetPosition(posCursorX,posCursorY);				
+				Delay_ms(300);
+		}
+			
+			
     }
 }
 

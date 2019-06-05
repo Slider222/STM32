@@ -62,6 +62,10 @@ Purpose     : GUI API include file
 extern "C" {     /* Make sure we have C-declarations in C++ programs */
 #endif
 
+extern GUI_CONST_STORAGE GUI_FONT GUI_FontTimesNewRoman24;
+#define GUI_FONT_TIMESNEWROMAN24  &GUI_FontTimesNewRoman24	
+	
+	
 /*********************************************************************
 *
 *       Disable string function warning with newer MSVC versions
@@ -626,8 +630,8 @@ int              GUI_MOVIE_Show         (GUI_MOVIE_HANDLE hMovie, int xPos, int 
 *
 *       Cursor routines
 */
-#define GUI_CURSOR_SHOW 0
-#define GUI_CURSOR_HIDE 1
+#define GUI_CURSOR_SHOW 1
+#define GUI_CURSOR_HIDE 0
 
 typedef struct {
   const GUI_BITMAP  * pBitmap;

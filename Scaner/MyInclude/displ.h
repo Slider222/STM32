@@ -3,7 +3,7 @@
 
 
 
-#include "Funct.h"
+#include "funct.h"
 
 #define RED     0xF864
 #define GREEN   0x67E0
@@ -40,6 +40,7 @@
 
 void lcdWriteCommand(uint8_t command);
 void write_data (unsigned int data);
+unsigned int read_data(uint8_t data);
 void Display_Home(void);
 void lcdSetPos(uint16_t poz_x_start, uint16_t poz_x_end, uint16_t poz_y_start, uint16_t poz_y_end);
 void display_rgb (unsigned int data);
@@ -47,7 +48,9 @@ void init_TFT (void);
 void set_cursor(unsigned int x, unsigned int y);
 void write_symbol(int x, int y, int Size, unsigned int Color, unsigned int Backcolor, char charcode);
 void write_String(unsigned int x, unsigned int y, unsigned int color, unsigned int phone, char *str, unsigned char size);
-
+void drawRect(unsigned int x0, unsigned int y0, unsigned int x1, unsigned int y1,  unsigned int color, unsigned char size, unsigned int backolor);
+void line (unsigned char size, int x1, int y1, int x2, int y2, unsigned int color);
+void point (unsigned char size, unsigned int x, unsigned int y, unsigned int color);
 
 void displ_PutPixel (uint16_t x, uint16_t y, uint16_t color);
 uint16_t displ_GetPixel (uint16_t x, uint16_t y);
