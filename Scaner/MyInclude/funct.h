@@ -11,13 +11,15 @@
 #include "AnMotors.h" 
 #include "displ.h"
 
+
+
 void portInit(void);
 void timerInit(void);
 uint64_t millis(void);
 uint64_t micros(void);
 void portToOut(void);
 void portToInput(void);
-
+char* adc2str(uint_fast16_t d, char* out);
 
 void uartInit(void);
 void send_to_uart(uint8_t data);

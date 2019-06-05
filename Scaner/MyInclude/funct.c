@@ -55,18 +55,18 @@ void portInit(void){
 
 void portToOut(void){
 	GPIOB->CRH &= ~((GPIO_CRH_CNF8_0)|(GPIO_CRH_CNF9_0)|(GPIO_CRH_CNF10_0)|(GPIO_CRH_CNF11_0)|(GPIO_CRH_CNF12_0)|(GPIO_CRH_CNF13_0)|(GPIO_CRH_CNF14_0));
-  GPIOB->CRH |= (GPIO_CRH_MODE8)|(GPIO_CRH_MODE9)|(GPIO_CRH_MODE10)|(GPIO_CRH_MODE11)|(GPIO_CRH_MODE12)|(GPIO_CRH_MODE13)|(GPIO_CRH_MODE14);
+    GPIOB->CRH |= (GPIO_CRH_MODE8)|(GPIO_CRH_MODE9)|(GPIO_CRH_MODE10)|(GPIO_CRH_MODE11)|(GPIO_CRH_MODE12)|(GPIO_CRH_MODE13)|(GPIO_CRH_MODE14);
     
 	GPIOB->CRL &= ~(GPIO_CRL_CNF7_0);
-  GPIOB->CRL |= (GPIO_CRL_MODE7);
+    GPIOB->CRL |= (GPIO_CRL_MODE7);
 }
 
 void portToInput(void){
 	GPIOB->CRH |= (GPIO_CRH_CNF8_0)|(GPIO_CRH_CNF9_0)|(GPIO_CRH_CNF10_0)|(GPIO_CRH_CNF11_0)|(GPIO_CRH_CNF12_0)|(GPIO_CRH_CNF13_0)|(GPIO_CRH_CNF14_0);
-  GPIOB->CRH &= ~((GPIO_CRH_MODE8)|(GPIO_CRH_MODE9)|(GPIO_CRH_MODE10)|(GPIO_CRH_MODE11)|(GPIO_CRH_MODE12)|(GPIO_CRH_MODE13)|(GPIO_CRH_MODE14));
+    GPIOB->CRH &= ~((GPIO_CRH_MODE8)|(GPIO_CRH_MODE9)|(GPIO_CRH_MODE10)|(GPIO_CRH_MODE11)|(GPIO_CRH_MODE12)|(GPIO_CRH_MODE13)|(GPIO_CRH_MODE14));
     
 	GPIOB->CRL |= (GPIO_CRL_CNF7_0);
-  GPIOB->CRL &= ~(GPIO_CRL_MODE7);  
+    GPIOB->CRL &= ~(GPIO_CRL_MODE7);  
 }
 
 void timerInit(){
@@ -114,6 +114,16 @@ void send_to_uart(uint8_t data) {
 
 }
 
+
+char* adc2str(uint_fast16_t d, char* out)
+{
+    out[4] = '\0';
+    out[3] = '0' + ( d       )    % 10;
+    out[2] = '0' + ( d /= 10 )    % 10;
+    out[1] = '0' + ( d /= 10 )    % 10;
+    out[0] = '0' + ( d /  10 )    % 10;
+    return out;
+}
 
 
 

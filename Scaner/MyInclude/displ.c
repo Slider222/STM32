@@ -68,19 +68,19 @@ unsigned int read_data (uint8_t data)
 {
 	unsigned int id;
   
-	//lcdWriteCommand(data);
+	lcdWriteCommand(data);
 	portToInput();
 	set_RS;                                           //тип данные
-  reset_CS;                                         //выбор чипа 
-	reset_RD;                                         //чтение	
-	id = (dataPort >> 7);
+    reset_CS;                                         //выбор чипа 
+	reset_RD;                                            //чтение	
+	id = (dataPortRead >> 7);
 	set_RD;
 	id = (id << 8);
-	reset_RD;
-	id |= (dataPort >> 7);
+	reset_RD;    
+	id |= (dataPortRead >> 7);
 	set_RD;
 	set_RS;
-  set_CS;	
+    set_CS;	
 	portToOut();	
 	return id;
 }
@@ -93,13 +93,13 @@ void Display_Home(void)
 	write_data(0x0000);           //в начало, т.е. ноль
 
 	lcdWriteCommand(0x46);        // конечный и начальный адрес по горизонтали x
-	write_data(0xef00);           // 239 и 0 EF00
+	write_data(0xEF00);           // 239 и 0 EF00
 	lcdWriteCommand(0x47);        //конечный адрес по вериткали y
 	write_data(0x013f);           // 319 013F
 	lcdWriteCommand(0x48);        //начальный адрес по вериткали y
 	write_data(0x0000);           // 0
 
-	lcdWriteCommand(0x22);
+	//lcdWriteCommand(0x22);
 }
 
 void lcdSetPos(uint16_t poz_x_start, uint16_t poz_x_end, uint16_t poz_y_start, uint16_t poz_y_end){
@@ -113,7 +113,7 @@ void lcdSetPos(uint16_t poz_x_start, uint16_t poz_x_end, uint16_t poz_y_start, u
 	lcdWriteCommand(0x48);        //начальный адрес по вериткали y
 	write_data(poz_y_start);           // 0
 
-	lcdWriteCommand(0x22);
+	//lcdWriteCommand(0x22);
 }
 
 
@@ -422,15 +422,24 @@ void write_String(unsigned int x, unsigned int y, unsigned int color, unsigned i
 
 void displ_PutPixel (uint16_t x, uint16_t y, uint16_t color){
     lcdWriteCommand(0x0020);
-	  write_data(x);
-	  lcdWriteCommand(0x0021);
-	  write_data(y);
-	  lcdWriteCommand(0x0022);
+	write_data(x);
+	lcdWriteCommand(0x0021);
+	write_data(y);
+	lcdWriteCommand(0x0022);
     write_data(color);
     
 }
 
 uint16_t displ_GetPixel (uint16_t x, uint16_t y){
+        uint16_t maxX, maxY;
+
+	    maxX = 239;
+	    maxY = 319;
+
+	if ( x > maxX || y > maxY ){
+		return 0;
+    }
+        Display_Home();
 		set_cursor(x, y);	  	  
 		return read_data(0x22);
 }

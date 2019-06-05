@@ -4,6 +4,7 @@
 #include "WindowDLG.h"
 #include "LCDConf.h"
 
+
 //#define CS GPIO_Pin_1
 
 
@@ -17,26 +18,30 @@ extern volatile uint64_t msTime;
 
 
 int main(void){
-	  int posCursorX = 0, posCursorY = 0;
-		portInit();
-		timerInit();    
+	int posCursorX = 0, posCursorY = 0, value = 0;
+    char* string;
+	portInit();
+	timerInit();    
     __enable_irq ();
     initDelay();				
-	  GUI_Init();       
+	GUI_Init();       
     CreateWindow();
-  	//GUI_CURSOR_SetPosition(posCursorX,posCursorY);
-	  GUI_CURSOR_Show();
-
+  	GUI_CURSOR_SetPosition(posCursorX,posCursorY);
+	GUI_CURSOR_Show();    
+    value = read_data(0x00);
+    string = adc2str(value, string);
+    
     while(1){
 
-		GUI_Delay(100);
+    GUI_Delay(100);
     for (int i = 0; i < 239; i++){
 				posCursorX += 20;
-        if (posCursorX > 238){
+        if (posCursorX > 200){
 						posCursorX = 0;
 				}
 				GUI_CURSOR_SetPosition(posCursorX,posCursorY);				
 				Delay_ms(300);
+                write_String(100, 100, 0xFF, RED, string, 2);
 		}
 			
 			
