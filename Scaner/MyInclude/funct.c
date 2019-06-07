@@ -115,13 +115,13 @@ void send_to_uart(uint8_t data) {
 }
 
 
-char* adc2str(uint_fast16_t d, char* out)
+char* adc2str(uint_fast16_t d, char* out, char base)
 {
     out[4] = '\0';
-    out[3] = '0' + ( d       )    % 10;
-    out[2] = '0' + ( d /= 10 )    % 10;
-    out[1] = '0' + ( d /= 10 )    % 10;
-    out[0] = '0' + ( d /  10 )    % 10;
+    out[3] = '0' + ( d       )      % base;
+    out[2] = '0' + ( d /= base )    % base;
+    out[1] = '0' + ( d /= base )    % base;
+    out[0] = '0' + ( d /  base )    % base;
     return out;
 }
 
