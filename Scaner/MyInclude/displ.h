@@ -41,7 +41,7 @@
 
 void lcdWriteCommand(uint8_t command);
 void write_data (unsigned int data);
-unsigned int read_data(uint8_t data);
+unsigned long read_data (uint8_t data);
 void Display_Home(void);
 void lcdSetPos(uint16_t poz_x_start, uint16_t poz_x_end, uint16_t poz_y_start, uint16_t poz_y_end);
 void display_rgb (unsigned int data);

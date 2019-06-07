@@ -64,23 +64,23 @@ void write_data (unsigned int data){
        
 }
 
-unsigned int read_data (uint8_t data)
+unsigned long read_data (uint8_t data)
 {
-	unsigned int id;
+	static unsigned long id;
   
 	lcdWriteCommand(data);
 	portToInput();
 	set_RS;                                           //тип данные
-    reset_CS;                                         //выбор чипа 
-	reset_RD;                                            //чтение	
-	id = (dataPortRead >> 7);
+  reset_CS;                                         //выбор чипа	
+	reset_RD;                                           //чтение
+  id = (dataPortRead >> 7);  	
 	set_RD;
-	id = (id << 8);
-	reset_RD;    
+  id = (id << 8);	
+	reset_RD;
 	id |= (dataPortRead >> 7);
-	set_RD;
+	set_RD;  
 	set_RS;
-    set_CS;	
+  set_CS;	
 	portToOut();	
 	return id;
 }

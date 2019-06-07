@@ -18,7 +18,7 @@ extern volatile uint64_t msTime;
 
 
 int main(void){
-	int posCursorX = 0, posCursorY = 0, value = 0;
+	int posCursorX = 0, posCursorY = 5, value = 0;
     char* string;
 	portInit();
 	timerInit();    
@@ -28,22 +28,23 @@ int main(void){
     CreateWindow();
   	GUI_CURSOR_SetPosition(posCursorX,posCursorY);
 	GUI_CURSOR_Show();    
-    value = read_data(0x00);
-    string = adc2str(value, string);
+    
     
     while(1){
 
-    GUI_Delay(100);
+    GUI_Delay(1);
     for (int i = 0; i < 239; i++){
-				posCursorX += 20;
-        if (posCursorX > 200){
+				posCursorX += 1;
+		GUI_CURSOR_SetPosition(posCursorX,posCursorX);
+        if (posCursorX > 238){
 						posCursorX = 0;
 				}
-				GUI_CURSOR_SetPosition(posCursorX,posCursorY);				
-				Delay_ms(300);
-                write_String(100, 100, 0xFF, RED, string, 2);
+//		value = read_data(0x22);
+//    string = adc2str(value, string, 16);
+//    write_String(100, 100, 0x0000, 0xFFFF, string, 4);    
 		}
-			
+		
+		
 			
     }
 }

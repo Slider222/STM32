@@ -98,7 +98,7 @@ Purpose     : Display controller configuration
 //#define XSIZE_PHYS  320
 //#define YSIZE_PHYS  240
 #define DISP_WIDTH   240
-#define DISP_HEIGHT  320 
+#define DISP_HEIGHT  320
 
 #define XSIZE_PHYS  DISP_WIDTH
 #define YSIZE_PHYS  DISP_HEIGHT
@@ -294,7 +294,7 @@ static unsigned int _GetPixelIndex(GUI_DEVICE * pDevice, int x, int y)
 	  
       //Example : _GetPixel(PixelIndex)
     // —читать точку
-    PixelIndex = displ_GetPixel ( xPhys, yPhys );
+    PixelIndex = displ_GetPixel (xPhys, yPhys);
 
     #if (LCD_MIRROR_X == 0) && (LCD_MIRROR_Y == 0) && (LCD_SWAP_XY == 0)
       #undef xPhys

@@ -630,8 +630,8 @@ int              GUI_MOVIE_Show         (GUI_MOVIE_HANDLE hMovie, int xPos, int 
 *
 *       Cursor routines
 */
-#define GUI_CURSOR_SHOW 1
-#define GUI_CURSOR_HIDE 0
+#define GUI_CURSOR_SHOW 0
+#define GUI_CURSOR_HIDE 1
 
 typedef struct {
   const GUI_BITMAP  * pBitmap;
