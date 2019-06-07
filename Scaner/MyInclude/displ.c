@@ -34,7 +34,7 @@
 //      set_CS;                                              //выбор чипа
 //       
 //}
-
+volatile uint16_t prevColor[100][100];
 
 void lcdWriteCommand(uint8_t command){
     dataPort = ((0x0000 >> 1) & 0x7f80);
@@ -80,8 +80,13 @@ unsigned long read_data (uint8_t data)
 	id |= (dataPortRead >> 7);
 	set_RD;  
 	set_RS;
+<<<<<<< HEAD
   set_CS;	
 	portToOut();	
+=======
+    set_CS;	
+	portToOut();
+>>>>>>> 48f1014fffb9d7a486c00a091ccf962bde9f09d5
 	return id;
 }
 
@@ -121,6 +126,7 @@ void display_rgb (unsigned int data)
 {
 	unsigned int i,j;	
 	Display_Home();
+    lcdWriteCommand(0x22);
 	for(i=0;i<320;i++)
 	{
 		for(j=0;j<240;j++)
@@ -141,7 +147,10 @@ void point (unsigned char size, unsigned int x, unsigned int y, unsigned int col
 		lcdWriteCommand(0x21);
 		write_data(y+j);
 		lcdWriteCommand(0x22);
-		for(i=0;i < size;i++) write_data(color);
+        
+		for(i=0;i < size;i++){
+            write_data(color);
+        }
 	}
 }
 
@@ -195,15 +204,14 @@ void drawRect(unsigned int x0, unsigned int y0, unsigned int x1, unsigned int y1
 		lcdWriteCommand(0x0021);
 		write_data((y0 + i)+size);
 		lcdWriteCommand(0x0022);
-		
-		for (unsigned int j = x0; j <= (x1-(size+1)); j++)
-		{
+        for (unsigned int j = x0; j <= (x1-(size+1)); j++)
+		{   
 			write_data(backolor);
 		}
 	}
-	
-	
-}
+    
+     
+} 
 
 
 
@@ -448,4 +456,41 @@ void displ_FillRect_fast (uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, ui
 		drawRect(x1, y1, x2, y2, color, 1, color);
 	
 }
+
+
+
+
+void getArea(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1){
+    uint16_t deltaY = y1 - y0;
+    uint16_t deltaX = x1 - x0;
+    for (int j = 0; j <= deltaY; j++){
+        for(int i = 0; i <= deltaX; i++){
+            lcdWriteCommand(0x20);
+            write_data(x0);
+            lcdWriteCommand(0x21);
+            write_data(y0 + j);
+            lcdWriteCommand(0x22); 
+            prevColor[i][j] = read_data(0x22); 
+        }
+    }
+}
+
+void setArea(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1){
+    uint16_t deltaY = y1 - y0;
+    uint16_t deltaX = x1 - x0;
+    for (int j = 0; j <= deltaY; j++){
+        lcdWriteCommand(0x20);
+		write_data(x0);
+		lcdWriteCommand(0x21);
+		write_data(y0 + j);
+		lcdWriteCommand(0x22);
+        for(int i = 0; i <= deltaX; i++){
+        write_data((uint16_t)prevColor[i][j]);  
+        }
+    
+    }
+
+}
+
+
 

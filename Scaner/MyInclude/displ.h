@@ -52,6 +52,9 @@ void write_String(unsigned int x, unsigned int y, unsigned int color, unsigned i
 void drawRect(unsigned int x0, unsigned int y0, unsigned int x1, unsigned int y1,  unsigned int color, unsigned char size, unsigned int backolor);
 void line (unsigned char size, int x1, int y1, int x2, int y2, unsigned int color);
 void point (unsigned char size, unsigned int x, unsigned int y, unsigned int color);
+void getArea(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1);
+void setArea(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1);
+
 
 void displ_PutPixel (uint16_t x, uint16_t y, uint16_t color);
 uint16_t displ_GetPixel (uint16_t x, uint16_t y);
