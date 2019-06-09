@@ -18,3 +18,4 @@
 .\objects\main.o: .\MyInclude\AnMotors.h
 .\objects\main.o: .\MyInclude\Funct.h
 .\objects\main.o: .\MyInclude\displ.h
+.\objects\main.o: .\MyInclude\arrow.h

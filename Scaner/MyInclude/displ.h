@@ -54,6 +54,9 @@ void line (unsigned char size, int x1, int y1, int x2, int y2, unsigned int colo
 void point (unsigned char size, unsigned int x, unsigned int y, unsigned int color);
 void getArea(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1);
 void setArea(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1);
+void drawBitmap(unsigned int x, unsigned int y, const uint16_t *array);
+void drawCursor(unsigned int x, unsigned int y, const uint16_t *array);
+void drawBackground(unsigned int x, unsigned int y);
 
 
 void displ_PutPixel (uint16_t x, uint16_t y, uint16_t color);

@@ -34,7 +34,7 @@
 //      set_CS;                                              //выбор чипа
 //       
 //}
-volatile uint16_t prevColor[100][100];
+volatile uint16_t prevColor[21][21];
 
 void lcdWriteCommand(uint8_t command){
     dataPort = ((0x0000 >> 1) & 0x7f80);
@@ -80,13 +80,8 @@ unsigned long read_data (uint8_t data)
 	id |= (dataPortRead >> 7);
 	set_RD;  
 	set_RS;
-<<<<<<< HEAD
   set_CS;	
-	portToOut();	
-=======
-    set_CS;	
 	portToOut();
->>>>>>> 48f1014fffb9d7a486c00a091ccf962bde9f09d5
 	return id;
 }
 
@@ -460,37 +455,88 @@ void displ_FillRect_fast (uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, ui
 
 
 
-void getArea(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1){
-    uint16_t deltaY = y1 - y0;
-    uint16_t deltaX = x1 - x0;
-    for (int j = 0; j <= deltaY; j++){
-        for(int i = 0; i <= deltaX; i++){
-            lcdWriteCommand(0x20);
-            write_data(x0);
-            lcdWriteCommand(0x21);
-            write_data(y0 + j);
-            lcdWriteCommand(0x22); 
+void getArea(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1){   
+    for (int j = 0; j < 20; j++){
+				lcdWriteCommand(0x20);
+        write_data(x0);
+        lcdWriteCommand(0x21);
+        write_data(y0 + j);
+        lcdWriteCommand(0x22); 
+        for(int i = 0; i < 20; i++){            
             prevColor[i][j] = read_data(0x22); 
         }
     }
 }
 
-void setArea(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1){
-    uint16_t deltaY = y1 - y0;
-    uint16_t deltaX = x1 - x0;
-    for (int j = 0; j <= deltaY; j++){
-        lcdWriteCommand(0x20);
-		write_data(x0);
-		lcdWriteCommand(0x21);
-		write_data(y0 + j);
-		lcdWriteCommand(0x22);
-        for(int i = 0; i <= deltaX; i++){
-        write_data((uint16_t)prevColor[i][j]);  
+void setArea(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1){    
+    for (int j = 0; j < 20; j++){
+				lcdWriteCommand(0x20);
+		    write_data(x0);
+				lcdWriteCommand(0x21);
+				write_data(y0 + j);
+				lcdWriteCommand(0x22);
+        for(int i = 0; i < 20; i++){
+        write_data((uint16_t)prevColor[i][j]);				
         }
     
     }
 
 }
 
+void drawBitmap(unsigned int x, unsigned int y, const uint16_t *array)
+{
+	unsigned int i, j;
+	for(j = 0; j < 20; j++)                        //размер по вертикали(высота рисунка)
+	{		
+		lcdWriteCommand(0x0020);
+		write_data(x);
+		lcdWriteCommand(0x0021);
+		write_data(y + j);
+		for(i = 0; i < 20; i++ )                        //размер по горизонтали(ширина рисунка)
+		{	
+			lcdWriteCommand(0x0022);
+			write_data(*array++);			
+		}		
+	}
+}
 
+void drawCursor(unsigned int x, unsigned int y, const uint16_t *array)
+{
+	unsigned int i, j;	
+	uint16_t color;	
+	for(j = 0; j < 20; j++)                        //размер по вертикали(высота рисунка)
+	{
+		lcdWriteCommand(0x0020);
+		write_data(x);
+		lcdWriteCommand(0x0021);
+		write_data(y + j);
+		lcdWriteCommand(0x0022);
+		for(i = 0; i < 20; i++ )                     //размер по горизонтали(ширина рисунка)
+		{
+			color = prevColor[i][j];
+			if (*array++ <= (0x0200)){			
+				write_data(color);				
+			} else {				
+				write_data(*array);
+			}
+		}		
+	}
+}
+
+void drawBackground(unsigned int x, unsigned int y)
+{
+	unsigned int i, j;
+	for(j=0; j < 20; j++)                        //размер по вертикали(высота рисунка)
+	{
+		lcdWriteCommand(0x0020);
+		write_data(x);
+		lcdWriteCommand(0x0021);
+		write_data(y + j);
+		lcdWriteCommand(0x0022);
+		for(i = 0; i < 20; i++ )                     //размер по горизонтали(ширина рисунка)
+		{
+				write_data(prevColor[i][j]);
+		}		
+	}
+}
 
