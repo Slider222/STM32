@@ -29,7 +29,7 @@ int main(void){
    write_String(50, 50, 0x0000, 0xffff, "FFF", 3);
    uint16_t x0 = 50, y0 = 50;
    uint16_t x1 = 30, y1 = 30;
-   //drawBitmap(200, 200, picture);
+   drawBitmap(100, 200, picture);
    
     while(1){
        getArea(x0,y0,x1,y1);                       //считать область    
