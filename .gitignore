@@ -11,5 +11,5 @@
 *.ilk
 *.map
 *.exp
-*._i
+*.__i
 *.axf
