@@ -1,5 +1,5 @@
 Dependencies for Project 'STM_Project', Target 'Scaner': (DO NOT MODIFY !)
-F (.\main.c)(0x5CFDEC68)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\MyInclude -I .\EmWin -I .\EmWin\inc -I .\EmWin\src-I.\RTE\Device\STM32F100RC-I.\RTE\_Scaner-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD_VL-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\main.c)(0x5CFDED9E)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\MyInclude -I .\EmWin -I .\EmWin\inc -I .\EmWin\src-I.\RTE\Device\STM32F100RC-I.\RTE\_Scaner-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD_VL-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include\stm32f10x.h)(0x5B7FB78F)
 I (.\RTE\_Scaner\RTE_Components.h)(0x5CF4B2CA)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.1\CMSIS\Include\core_cm3.h)(0x59C10E6E)
